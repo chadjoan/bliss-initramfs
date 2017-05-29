@@ -506,7 +506,10 @@ class Core:
                     result = check_output(cmd, universal_newlines=True, shell=True).strip()
                     cls._modset.add(result)
                 except CalledProcessError:
-                    Tools.ModuleDoesntExist(file)
+                    if file == "zfs":
+                        Tools.Warn('Module "zfs" is missing.  This is only OK if it is built into the kernel.')
+                    else:
+                        Tools.ModuleDoesntExist(file)
 
         # If a kernel has been set, try to update the module dependencies
         # database before searching it

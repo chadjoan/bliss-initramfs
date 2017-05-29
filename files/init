@@ -43,7 +43,11 @@ LoadModules()
         local modules=""
 
         for module in ${modules}; do
-            modprobe ${module}
+            if [[ "$module" == "zfs" ]]; then
+                modprobe ${module} || Warn "Could not modprobe zfs; this could be fine if it is built into the kernel."
+            else
+                modprobe ${module}
+            fi
         done
     fi
 }
