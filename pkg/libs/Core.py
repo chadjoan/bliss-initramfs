@@ -556,7 +556,7 @@ class Core:
         bindeps = set()
 
         # Get the interpreter name that is on this system
-        result = check_output("ls " + var.lib64 + "/ld-linux-x86-64.so*", shell=True, universal_newlines=True).strip()
+        result = check_output("ls " + var.lib64 + "/ld-musl-x86_64.so*", shell=True, universal_newlines=True).strip()
 
         # Add intepreter to deps since everything will depend on it
         bindeps.add(result)
